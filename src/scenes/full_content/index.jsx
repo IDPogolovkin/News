@@ -18,9 +18,15 @@ const FullContent = () => {
 
   const [news, setNews] = React.useState([])
 
+  axios.defaults.headers.get['Content-Type'] ='application/json;charset=utf-8';
+  axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+
   const publishNewsData = () => {
     axios
-      .get(`https://3e73-95-141-138-95.ngrok-free.app/publich_channel?title=${'High-Speed Rail Expansion'}&description=${'A major high-speed rail project receives funding for expansion, connecting additional cities for rapid transit.'}&url=${'https://www.hurriyet.com.tr/gundem/canakkalede-lastik-bottaki-39-kacak-gocmen-yakalandi-42323321'}`)
+      .get(`https://3e73-95-141-138-95.ngrok-free.app/publich_channel?title=${'High-Speed Rail Expansion'}&description=${'A major high-speed rail project receives funding for expansion, connecting additional cities for rapid transit.'}&url=${'https://www.hurriyet.com.tr/gundem/canakkalede-lastik-bottaki-39-kacak-gocmen-yakalandi-42323321'}`,
+      {
+        mode: 'no-cors'
+      })
       .then((response) => {
         const newsData = response.data;
         setNews(newsData);
